@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Rational.h"
+#include "MyString.h"
 
 int main()
 {
@@ -17,6 +18,14 @@ int main()
 
     // w/o const I get garbage as the result of the rhs multiplication.
     std::cout << r3.ToStr() << std::endl;
+
+    // The origin of why we have different "constness": bitwise and conceptual.
+    const MyString::MyString s("Hello");
+    char* constBreach = s;
+
+    // A breach in our const method!
+    constBreach[0] = 'Y'; // Dad joke
+    std::cout << s << std::endl;
 
     return 0;
 }
